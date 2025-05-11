@@ -5,7 +5,7 @@ FROM openjdk:21-jre-slim
 WORKDIR /app
 
 # Copy the application JAR file into the container
-COPY target/JavaWeb3.jar app.jar
+COPY target/WebAppCal.jar app.jar
 
 # Expose port 8080
 EXPOSE 8080
