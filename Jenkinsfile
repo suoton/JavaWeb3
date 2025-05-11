@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    sh 'docker build -t suoton/javaweb3 .'
+                    sh 'docker build -t suoton/webappcal .'
                 }
             }
         }
