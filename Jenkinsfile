@@ -23,7 +23,7 @@ pipeline {
                     // Log in to Docker Hub
                     sh 'echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USERNAME --password-stdin'
                     // Push the image to Docker Hub
-                    sh 'docker push suoton/javaweb3'
+                    sh 'docker push suoton/webappcal'
                 }
             }
         }
