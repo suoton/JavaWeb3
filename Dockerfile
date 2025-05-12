@@ -1,14 +1,9 @@
-# Use the official OpenJDK image as a base
-FROM openjdk:21-jre-slim
-
-# Set the working directory
+FROM maven:3.9.0-eclipse-temurin-17 AS build
 WORKDIR /app
-
-# Copy the application JAR file into the container
-COPY target/WebAppCal.jar app.jar
-
-# Expose port 8080
+COPY . .
+RUN mvn clean package
+FROM eclipse-temurin:17-jre
+WORKDIR /app
+COPY --from=build /app/target/WebAppCal-0.0.6.war /app/app.war
 EXPOSE 8080
-
-# Command to run the application
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "/app/app.war"]
