@@ -1,9 +1,8 @@
-FROM maven:3.9.0-eclipse-temurin-17 AS build
-WORKDIR /app
-COPY . .
-RUN mvn clean package
-FROM eclipse-temurin:17-jre
-WORKDIR /app
-COPY --from=build /app/target/WebAppCal-0.0.6.war /app/app.war
+# Use the official Tomcat base image
+FROM tomcat:9.0
+# Copy your WAR file into the Tomcat webapps directory
+COPY ./target/WebAppCal-0.0.6.war /usr/local/tomcat/webapps/
+# Expose port 8080 inside the container
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/app/app.war"]
+# Command to run the Tomcat server
+CMD ["catalina.sh", "run"]
